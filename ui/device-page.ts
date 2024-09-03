@@ -47,7 +47,7 @@ export const component: ClosureComponent = (): Component => {
           m(
             "li",
             {
-              class: tabActive[c["route"]],
+              "class": tabActive[c["route"]],
             },
             [
               m(
