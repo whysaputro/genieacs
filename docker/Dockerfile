@@ -1,7 +1,7 @@
 FROM node:20-bullseye
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y sudo supervisor git
+RUN apt-get install -y sudo supervisor git iputils-ping
 RUN mkdir -p /var/log/supervisor
 
 WORKDIR /opt
@@ -29,9 +29,5 @@ RUN echo '/var/log/genieacs/*.log /var/log/genieacs/*.yaml {\n\
     }' > /etc/logrotate.d/genieacs
 
 RUN cp docker/services/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN cp docker/run_with_env.sh /usr/bin/run_with_env.sh
-RUN chmod +x /usr/bin/run_with_env.sh
-
-WORKDIR /var/log/genieacs
 
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
