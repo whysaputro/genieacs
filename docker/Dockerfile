@@ -30,4 +30,6 @@ RUN echo '/var/log/genieacs/*.log /var/log/genieacs/*.yaml {\n\
 
 RUN cp docker/services/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+WORKDIR /var/log/genieacs
+
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
