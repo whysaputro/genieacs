@@ -11,12 +11,12 @@ export interface Fault {
   code: string;
   message: string;
   detail?:
-    | FaultStruct
-    | {
-        name: string;
-        message: string;
-        stack?: string;
-      };
+  | FaultStruct
+  | {
+    name: string;
+    message: string;
+    stack?: string;
+  };
   timestamp?: number;
 }
 

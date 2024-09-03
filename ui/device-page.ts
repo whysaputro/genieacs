@@ -36,16 +36,48 @@ export const component: ClosureComponent = (): Component => {
 
       const conf = config.ui.device;
       const cmps = [];
+      const tabActive = {
+        [vnode.attrs["tab"] || conf[0]["route"]]: "active",
+      };
+      const tabs = [];
+      const tabContent = [];
 
-      for (const c of Object.values(conf)) {
-        cmps.push(
-          m.context(
-            { device: dev.value[0], deviceQuery: dev },
-            store.evaluateExpression(c["type"], null) as string,
-            c,
+      for (const [k, c] of Object.entries(conf)) {
+        tabs.push(
+          m(
+            "li",
+            {
+              class: tabActive[c["route"]],
+            },
+            [
+              m(
+                "a",
+                {
+                  href: `#!/devices/${vnode.attrs["deviceId"]}/${c["route"]}`,
+                },
+                c["label"],
+              ),
+            ],
           ),
         );
+
+        if (tabActive[c["route"]]) {
+          for (const comp of Object.values(c["components"])) {
+            tabContent.push(
+              m.context(
+                { device: dev.value[0], deviceQuery: dev },
+                comp["type"],
+                comp,
+              ),
+            );
+          }
+        }
       }
+
+      cmps.push(
+        m("div.tab", [m("ul", tabs),
+        m("div.tab_content", tabContent)]),
+      );
 
       return [m("h1", vnode.attrs["deviceId"]), cmps];
     },

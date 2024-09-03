@@ -38,13 +38,16 @@ a {
   transition:
     background-color var(--fade),
     color var(--fade);
+
   &:visited {
     color: var(--color4);
   }
+
   &:hover {
     color: white;
     background-color: var(--color4);
   }
+
   /* text-decoration does not propagate to inline-block children */
   & span {
     text-decoration: inherit;
@@ -64,6 +67,7 @@ i {
   from {
     background-color: hsl(var(--status-green) / 0.9);
   }
+
   to {
     background-color: transparent;
   }
@@ -95,6 +99,7 @@ body {
     margin-left: -360px;
     top: 0;
     left: 50%;
+
     & > .drawer {
       background-color: rgba(255, 255, 255, 0.9);
       border-bottom-left-radius: 6px;
@@ -115,23 +120,28 @@ body {
 
       & > .status {
         display: flex;
+
         & > span {
           margin-right: 1em;
           padding-left: 0.2em;
           padding-right: 0.2em;
           border-radius: 0.4em;
         }
+
         & > .pending.active {
           &.active {
             animation: 0.5s linear 0s infinite alternate pending-blink;
           }
         }
+
         & > .stale.active {
           background-color: hsl(var(--status-gray) / 0.9);
         }
+
         & > .fault.active {
           background-color: hsl(var(--status-red) / 0.9);
         }
+
         & > .queued.active {
           font-weight: bold;
         }
@@ -159,6 +169,7 @@ body {
           margin-top: 0.3em;
           margin-bottom: 0.3em;
         }
+
         & .actions {
           text-align: right;
         }
@@ -167,18 +178,22 @@ body {
       & > .queue {
         max-height: 400px;
         overflow-y: auto;
+
         & > .pending {
           animation: 0.5s linear 0s infinite alternate pending-blink;
           border-radius: 0.4em;
         }
+
         & > .stale {
           background-color: hsl(var(--status-gray) / 0.9);
           border-radius: 0.4em;
         }
+
         & > .fault {
           background-color: hsl(var(--status-red) / 0.9);
           border-radius: 0.4em;
         }
+
         & .parameter {
           font-style: italic;
           max-width: 400px;
@@ -187,6 +202,7 @@ body {
           overflow: hidden;
           vertical-align: text-bottom;
         }
+
         & .value {
           max-width: 200px;
           text-overflow: ellipsis;
@@ -195,8 +211,10 @@ body {
           vertical-align: text-bottom;
           white-space: nowrap;
         }
+
         & > div {
           display: flex;
+
           & > .actions {
             flex-grow: 1;
             text-align: right;
@@ -204,6 +222,7 @@ body {
         }
       }
     }
+
     & > .notifications-wrapper {
       & > .notification {
         padding: 0.3em;
@@ -221,10 +240,12 @@ body {
           background-color: hsl(var(--status-red) / 0.9);
           border: 1px solid hsl(var(--status-red));
         }
+
         &.success {
           background-color: hsl(var(--status-green) / 0.9);
           border: 1px solid hsl(var(--status-green));
         }
+
         &.warning {
           background-color: hsl(var(--status-yellow) / 0.9);
           border: 1px solid hsl(var(--status-yellow));
@@ -232,6 +253,7 @@ body {
       }
     }
   }
+
   & > nav {
     display: inline-block;
     overflow: visible;
@@ -254,6 +276,7 @@ body {
         border-left: 1px solid var(--color1);
         border-right: 1px solid var(--color1);
         transition: background-color var(--fade);
+
         &.active,
         &:hover {
           background-color: white;
@@ -276,6 +299,7 @@ body {
   & > .logo {
     display: inline-block;
     position: relative;
+
     & > img {
       margin: 10px;
       height: 56px;
@@ -301,6 +325,7 @@ body {
 #side-menu {
   width: 200px;
   min-width: 200px;
+
   & > ul {
     padding: 0;
     list-style: none;
@@ -314,6 +339,7 @@ body {
         border-bottom-right-radius: 6px;
         border-top-right-radius: 6px;
         background-color: var(--color3);
+
         &:hover {
           background-color: var(--color4);
           color: var(--color3);
@@ -376,7 +402,9 @@ table.table {
     & > td {
       border-bottom: 1px dotted var(--color1);
     }
+
     transition: background-color var(--fade);
+
     &:hover {
       background-color: var(--color3);
     }
@@ -385,6 +413,7 @@ table.table {
   & tbody > tr.empty {
     text-align: center;
     color: var(--disabled);
+
     &:hover {
       background-color: initial;
     }
@@ -434,15 +463,18 @@ button {
     border: 1px solid var(--color1);
     background-color: var(--color3);
   }
+
   &.critical {
     border: 1px solid var(--color1);
     background-color: var(--color3);
     color: #700;
   }
+
   &:hover:enabled {
     background-color: var(--color4);
     color: var(--color3);
   }
+
   &:disabled {
     color: var(--disabled);
     cursor: not-allowed;
@@ -460,10 +492,12 @@ input {
   transition:
     border-color var(--fade),
     background-color var(--fade);
+
   &.error {
     background-color: #efcbcf;
     border-color: #e6b2b7;
   }
+
   &:focus,
   &:hover {
     border-color: var(--color4);
@@ -472,6 +506,7 @@ input {
 
 .filter {
   margin-bottom: 0.5em;
+
   & > input {
     font-size: 90%;
     width: 35em;
@@ -498,6 +533,7 @@ input {
 table.parameter-list {
   border-spacing: 0;
   text-align: left;
+
   & th {
     padding: 0;
     padding-right: 1em;
@@ -509,6 +545,7 @@ table.parameter-list {
     margin-bottom: -0.125em;
     margin-left: 0.2em;
     margin-right: 0.2em;
+
     & > circle {
       stroke: var(--color5);
       stroke-width: 0.08em;
@@ -583,9 +620,11 @@ span.na {
   & > .parameter-list {
     font-family: monospace;
     font-size: 14px;
+
     & button {
       font-size: 16px;
     }
+
     overflow-y: scroll;
     height: 200px;
 
@@ -593,6 +632,7 @@ span.na {
       width: 100%;
       table-layout: fixed;
       border-spacing: 0;
+
       & > tbody {
         & > tr {
           & > td {
@@ -600,7 +640,9 @@ span.na {
             white-space: nowrap;
             border-bottom: 1px dotted var(--color1);
           }
+
           transition: background-color var(--fade);
+
           &:hover {
             background-color: var(--color3);
           }
@@ -610,6 +652,7 @@ span.na {
               max-width: 100%;
             }
           }
+
           & > td.right {
             text-align: right;
             padding-right: 0.5em;
@@ -632,6 +675,7 @@ span.na {
 .actions-bar {
   margin-top: 10px;
   margin-bottom: 10px;
+
   & > button {
     margin-right: 10px;
   }
@@ -692,6 +736,7 @@ span.tag {
   max-height: 300px;
   overflow-y: auto;
   transition: opacity var(--fade);
+
   & > .suggestion {
     padding: 5px;
 
@@ -717,6 +762,7 @@ span.long-text {
 
 span.long-text-overflowed {
   cursor: pointer;
+
   &:hover {
     text-decoration: underline;
     text-decoration-style: dotted;
@@ -755,6 +801,7 @@ span.parameter-value {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+
   &.icon-unsorted {
     opacity: 0.3;
   }
@@ -768,6 +815,7 @@ span.parameter-value {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -777,6 +825,7 @@ span.parameter-value {
   display: flex;
   align-items: center;
   justify-content: center;
+
   &::after {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PHBhdGggZD0iTTEwIDUwYTQwIDQwIDAgMDA4MCAwIDQwIDQyIDAgMDEtODAgMCIgZmlsbD0iI2IxMmQ1YyIgLz48L3N2Zz4=);
     content: "";
@@ -792,6 +841,7 @@ span.parameter-value {
   background-color: #eee;
   overflow: hidden;
   height: 3px;
+
   & > .progress-bar {
     height: 100%;
     background-color: #b12d5c;
@@ -802,4 +852,52 @@ span.parameter-value {
 td,
 th {
   line-height: normal;
+}
+
+/* tabsystem on device page */
+div.tab {
+  display: inline-block;
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+
+  & > div.tab_content {
+    padding: 10px 10px;
+    border-top: 1px solid var(--color1);
+  }
+
+  & > ul {
+    font-weight: bold;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+
+    & > li {
+      margin: 0 2px;
+      background-color: var(--color1);
+      display: inline-block;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border-top: 1px solid var(--color1);
+      border-left: 1px solid var(--color1);
+      border-right: 1px solid var(--color1);
+      transition: background-color var(--fade);
+
+      &.active,
+      &:hover {
+        background-color: white;
+      }
+
+      & > a,
+      & > a:visited,
+      & > a:hover {
+        display: inline-block;
+        min-width: 140px;
+        color: var(--color4);
+        text-decoration: none;
+        background: none;
+        padding: 8px;
+      }
+    }
+  }
 }
