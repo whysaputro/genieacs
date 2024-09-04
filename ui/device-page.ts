@@ -15,6 +15,7 @@ export function init(
   return Promise.resolve({
     deviceId: args.id,
     deviceFilter: ["=", ["PARAM", "DeviceID.ID"], args.id],
+    tab: args.tab,
   });
 }
 
@@ -36,29 +37,19 @@ export const component: ClosureComponent = (): Component => {
 
       const conf = config.ui.device;
       const cmps = [];
-      const tabActive = {
-        [vnode.attrs["tab"] || conf[0]["route"]]: "active",
-      };
+      const tabActive = { [vnode.attrs["tab"] || conf[0]["route"]]: "active" };
       const tabs = [];
       const tabContent = [];
 
       for (const [k, c] of Object.entries(conf)) {
         tabs.push(
-          m(
-            "li",
-            {
-              "class": tabActive[c["route"]],
-            },
-            [
-              m(
-                "a",
-                {
-                  href: `#!/devices/${vnode.attrs["deviceId"]}/${c["route"]}`,
-                },
-                c["label"],
-              ),
-            ],
-          ),
+          m("li", {
+            class: tabActive[c["route"]],
+          }, [
+            m("a", {
+              href: `#!/devices/${vnode.attrs["deviceId"]}/${c["route"]}`,
+            }, c["label"])
+          ])
         );
 
         if (tabActive[c["route"]]) {
