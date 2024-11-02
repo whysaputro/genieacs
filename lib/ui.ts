@@ -1,10 +1,10 @@
 import { constants } from "node:zlib";
 import Koa from "koa";
-import Router from "koa-router";
+import Router from "@koa/router";
 import * as jwt from "jsonwebtoken";
-import koaStatic from "koa-static";
+import koaSend from "koa-send";
 import koaCompress from "koa-compress";
-import koaBodyParser from "koa-bodyparser";
+import koaBodyParser from "@koa/bodyparser";
 import koaJwt from "koa-jwt";
 import * as config from "./config.ts";
 import api from "./ui/api.ts";
@@ -17,12 +17,6 @@ import * as init from "./init.ts";
 import { version as VERSION } from "../package.json";
 import memoize from "./common/memoize.ts";
 import { APP_JS, APP_CSS, FAVICON_PNG } from "../build/assets.ts";
-
-declare module "koa" {
-  interface Request {
-    body: any;
-  }
-}
 
 const koa = new Koa();
 const router = new Router();
@@ -262,6 +256,17 @@ koa.use(
 );
 
 koa.use(router.routes());
-koa.use(koaStatic(config.ROOT_DIR + "/public"));
+koa.use(async (ctx, next) => {
+  await next();
+  if (ctx.method !== "HEAD" && ctx.method !== "GET") return;
+  if (ctx.body != null || ctx.status !== 404) return;
+  if (/(?:^|[\\/])\.\.(?:[\\/]|$)/.test(ctx.path)) return;
+
+  try {
+    await koaSend(ctx, ctx.path, { root: config.ROOT_DIR + "/public" });
+  } catch (err) {
+    if (err.status !== 404) throw err;
+  }
+});
 
 export const listener = koa.callback();
