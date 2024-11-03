@@ -1,10 +1,10 @@
 import { constants } from "node:zlib";
 import Koa from "koa";
-import Router from "@koa/router";
+import Router from "koa-router";
 import * as jwt from "jsonwebtoken";
 import koaSend from "koa-send";
 import koaCompress from "koa-compress";
-import koaBodyParser from "@koa/bodyparser";
+import koaBodyParser from "koa-bodyparser";
 import koaJwt from "koa-jwt";
 import * as config from "./config.ts";
 import api from "./ui/api.ts";
@@ -17,6 +17,12 @@ import * as init from "./init.ts";
 import { version as VERSION } from "../package.json";
 import memoize from "./common/memoize.ts";
 import { APP_JS, APP_CSS, FAVICON_PNG } from "../build/assets.ts";
+
+declare module "koa" {
+  interface Request {
+    body: any;
+  }
+}
 
 const koa = new Koa();
 const router = new Router();
@@ -223,13 +229,13 @@ router.get("/", async (ctx) => {
     <noscript>GenieACS UI requires JavaScript to work. Please enable JavaScript in your browser.</noscript>
       <script>
         window.clientConfig = ${JSON.stringify({
-          ui: localCache.getUiConfig(ctx.state.configSnapshot),
-        })};
+    ui: localCache.getUiConfig(ctx.state.configSnapshot),
+  })};
         window.configSnapshot = ${JSON.stringify(ctx.state.configSnapshot)};
         window.genieacsVersion = ${JSON.stringify(VERSION)};
         window.username = ${JSON.stringify(
-          ctx.state.user ? ctx.state.user.username : "",
-        )};
+    ctx.state.user ? ctx.state.user.username : "",
+  )};
         window.permissionSets = ${JSON.stringify(permissionSets)};
       </script>
       <script type="module" src="${APP_JS}"></script>${wizard} 

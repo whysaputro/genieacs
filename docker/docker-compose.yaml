@@ -29,6 +29,10 @@ services:
       - GENIEACS_DEBUG_FILE=/var/log/genieacs/genieacs-debug.yaml
       - GENIEACS_EXT_DIR=/opt/genieacs/ext
       - GENIEACS_MONGODB_CONNECTION_URL=mongodb://mongo/genieacs
+      - GENIEACS_UI_INTERFACE=0.0.0.0
+      - GENIEACS_FS_INTERFACE=0.0.0.0
+      - GENIEACS_NBI_INTERFACE=0.0.0.0
+      - GENIEACS_CWMP_INTERFACE=0.0.0.0
     ports:
       - "7547:7547"
       - "7557:7557"
